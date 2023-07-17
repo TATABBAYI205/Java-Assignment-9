@@ -1,0 +1,17 @@
+Lifecycle of beans in Spring:-
+============================
+In the Spring Framework, the lifecycle of a bean managed by the BeanFactory (or ApplicationContext) container consists of several phases, from its instantiation to destruction. Understanding the bean lifecycle is essential for implementing custom initialization and destruction logic or for integrating with certain Spring features. Here's an overview of the different stages in the lifecycle of a bean within the BeanFactory container:
+
+1. Instantiation: The container creates an instance of the bean by calling the bean's constructor. At this point, the bean is just a plain object and doesn't have any properties or dependencies set.
+
+2. Dependency Injection: Once the bean is instantiated, the container proceeds with dependency injection. It sets the values of the bean's properties or constructor parameters based on the configured dependencies.
+
+3. Initialization: After the dependencies are injected, the container performs any necessary initialization on the bean. This phase includes applying any custom initialization logic defined by the developer, such as implementing the `InitializingBean` interface or using the `@PostConstruct` annotation. It allows you to perform tasks like initializing resources, opening database connections, or setting up internal state.
+
+4. Bean is Ready for Use: Once the initialization phase is complete, the bean is fully configured and ready for use within the application. It can be accessed and used by other beans or components.
+
+5. Usage: The bean is now in an active state and can perform its intended functionality within the application. Other beans or components can interact with the initialized bean, calling its methods and utilizing its services.
+
+6. Destruction: When the application or the container shuts down, the bean is no longer needed. The container invokes the destruction phase, allowing the bean to release any resources it holds or perform necessary cleanup tasks. This phase includes executing custom destruction logic defined by the developer, such as implementing the `DisposableBean` interface or using the `@PreDestroy` annotation. It provides an opportunity to close open connections, release file handles, or perform any necessary cleanup operations.
+
+It's important to note that the BeanFactory container manages the lifecycle of singleton beans, which are created once and reused throughout the application. Prototype beans, on the other hand, are not managed by the container after instantiation and dependency injection. Their lifecycle is solely the responsibility of the code that uses them.

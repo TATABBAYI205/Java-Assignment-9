@@ -1,0 +1,45 @@
+Difference b/w Constructor Injection and Setter Injection:-
+=========================================================
+Constructor Injection and Setter Injection are two common approaches for implementing Dependency Injection in the Spring Framework. They differ in how dependencies are provided to an object. Here's a comparison between the two:
+
+Constructor Injection:
+- Dependencies are provided through the constructor of a class.
+- The dependencies are declared as constructor parameters.
+- The container resolves the dependencies and injects them when creating an instance of the class.
+- Once the dependencies are injected, they are typically immutable (i.e., their values cannot be changed).
+- Constructor Injection promotes the principle of immutability and ensures that the object is in a valid state upon creation.
+- It is particularly useful when a class requires mandatory dependencies, and it enforces that these dependencies are provided during 
+  object creation.
+- Constructor Injection establishes a clear contract between the dependent class and its dependencies.
+- Example:
+
+public class MyClass {
+    private Dependency dependency;
+
+    public MyClass(Dependency dependency) {
+        this.dependency = dependency;
+    }
+    
+    // ...
+}
+
+Setter Injection:
+- Dependencies are provided through setter methods on a class.
+- The dependencies are declared as setter methods, typically with corresponding property names.
+- The container calls these setter methods after creating an instance of the class and before it is used.
+- Setter Injection allows for optional dependencies, as dependencies can be set or changed after the object is created.
+- Setter methods allow for greater flexibility and dynamism, as dependencies can be modified or swapped at runtime.
+- It is important to note that in Setter Injection, the object may be in an incomplete or invalid state until all required dependencies 
+  are set.
+- Setter Injection is useful when a class has optional dependencies or when dependencies may change during the object's lifecycle.
+- Example:
+
+public class MyClass {
+    private Dependency dependency;
+
+    public void setDependency(Dependency dependency) {
+        this.dependency = dependency;
+    }
+    
+    // ...
+}

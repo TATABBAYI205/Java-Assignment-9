@@ -1,0 +1,26 @@
+Spring Autowiring :-
+==================
+You have learnt how to declare beans using the <bean> element and inject <bean> using <constructor-arg> and <property> elements in XML configuration file.
+
+The Spring container can autowire relationships between collaborating beans without using <constructor-arg> and <property> elements, which helps cut down on the amount of XML configuration you write for a big Spring-based application.
+
+Autowiring Modes
+Following are the autowiring modes, which can be used to instruct the Spring container to use autowiring for dependency injection. You use the autowire attribute of the <bean/> element to specify autowire mode for a bean definition.
+
+Modes:-
+
+-> no autowiring-This is default setting which means no autowiring and you should use explicit bean reference for wiring. You have nothing 
+   to do special for this wiring. This is what you already have seen in Dependency Injection chapter.
+
+-> byName-Autowiring by property name. Spring container looks at the properties of the beans on which autowire attribute is set to byName 
+   in the XML configuration file. It then tries to match and wire its properties with the beans defined by the same names in the 
+   configuration file.
+
+-> byType-Autowiring by property datatype. Spring container looks at the properties of the beans on which autowire attribute is set to  
+   byType in the XML configuration file. It then tries to match and wire a property if its type matches with exactly one of the beans name 
+   in configuration file. If more than one such beans exists, a fatal exception is thrown.
+
+-> constructor-Similar to byType, but type applies to constructor arguments. If there is not exactly one bean of the constructor argument  
+   type in the container, a fatal error is raised.
+
+-> autodetect-Spring first tries to wire using autowire by constructor, if it does not work, Spring tries to autowire by byType.
